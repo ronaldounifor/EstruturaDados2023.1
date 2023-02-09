@@ -14,6 +14,7 @@ public class App {
         lista.adicionarPosicao(8, 4);
         
         lista.adicionarPosicao(6, 3);
+        lista.adicionarPosicao(5, 5);
 
         System.out.println(lista.estaCheia());
         System.out.println(lista.estaVazia());
