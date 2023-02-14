@@ -1,7 +1,7 @@
 import javax.swing.JOptionPane;
 
 public class Lista {
-    private int[] elementos;
+    public int[] elementos;
     private int quantidade;
     private int primeiro;
     private int ultimo;
@@ -75,10 +75,39 @@ public class Lista {
         }
     }
     // Inserir um elemento e no início – adicionarInicio(e)
+    public void adicionarInicio(int elemento) {
+        adicionarPosicao(elemento, 0);
+    }
+
     // Inserir um elemento e no final – adicionarFinal(e)
+    public void adicionarFinal(int elemento) {
+        adicionarPosicao(elemento, quantidade);
+    }
+
     // Remover o elemento e na posição i – removerPosicao(i)
-    // Remover o elemento no inicio – removerInicio(i)
-    // Remover o elemento no final – removerFinal(i)
+    public void removerPosicao(int indice) {
+        if(estaVazia())
+            System.out.println("Não foi possível remover pois a lista está vazia!");
+        else {
+            if(!validarEntrada(indice))
+                System.out.println("Posição inválida!");
+            else {
+                for(int i = indice; i < quantidade - 1; i++)
+                    elementos[i] = elementos[i+1];
+                
+                quantidade--;
+            }
+        }
+    }
+    // Remover o elemento no inicio – removerInicio()
+    public void removerInicio() {
+        removerPosicao(0);
+    }
+
+    // Remover o elemento no final – removerFinal()
+    public void removerFinal() {
+        removerPosicao(quantidade - 1);
+    }
 
     //Exibir todos os elementos
     public void exibir(){
@@ -89,7 +118,7 @@ public class Lista {
             if(i != (quantidade - 1))
                 elementos += ", ";
         }
-
+        
         JOptionPane.showMessageDialog(null, elementos);
     }
 }
