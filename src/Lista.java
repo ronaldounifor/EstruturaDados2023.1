@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 import javax.swing.JOptionPane;
 
 public class Lista {
@@ -120,5 +122,9 @@ public class Lista {
         }
         
         JOptionPane.showMessageDialog(null, elementos);
+    }
+
+    public String toString() {
+        return Arrays.toString(elementos);
     }
 }
