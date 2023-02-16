@@ -9,14 +9,14 @@ public class Fila {
     private int ultimo;
     
     // Criar uma nova lista – Lista()
-    public Lista() {
+    public Fila() {
         elementos = new int[10];
         quantidade = 0;
         primeiro = -1;
         ultimo = -1;
     }
 
-    public Lista(int tamanho) {
+    public Fila(int tamanho) {
         elementos = new int[tamanho];
     }
     
