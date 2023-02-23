@@ -5,15 +5,11 @@ import javax.swing.JOptionPane;
 public class Lista {
     public int[] elementos;
     private int quantidade;
-    private int primeiro;
-    private int ultimo;
     
     // Criar uma nova lista – Lista()
     public Lista() {
         elementos = new int[10];
         quantidade = 0;
-        primeiro = -1;
-        ultimo = -1;
     }
 
     public Lista(int tamanho) {

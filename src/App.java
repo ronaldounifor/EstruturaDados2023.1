@@ -1,18 +1,22 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        Lista lista = new Lista();
+        Fila fila = new Fila(5);
+        System.out.println(fila.estaVazia());
+        System.out.println(fila.estaCheia());
 
-        lista.adicionarFinal(2);
-        lista.adicionarFinal(3);
-        lista.adicionarFinal(1);
-        lista.adicionarFinal(5);
-        lista.adicionarFinal(7);
-        lista.adicionarFinal(8);
+        fila.enfileirar(9);
+        fila.enfileirar(1);
+        fila.enfileirar(8);
+        fila.enfileirar(2);
+        fila.enfileirar(7);
+        fila.enfileirar(200);
+
+        fila.exibir();
+
+        System.out.println(fila.estaVazia());
+        System.out.println(fila.estaCheia());
         
-        lista.removerPosicao(3);
-        
-        lista.removerInicio();        
-        
-        lista.removerFinal();
+        fila.desenfileirar();
+        fila.exibir();
     }
 }
