@@ -2,22 +2,17 @@ import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 
-
-
-
-
-
-public class Fila {
+public class Pilha {
     public int[] elementos;
     private int quantidade;
     
-    // Criar uma nova fila – Fila()
-    public Fila() {
+    // Criar uma nova pilha – Pilha()
+    public Pilha() {
         elementos = new int[10];
         quantidade = 0;
     }
 
-    public Fila(int tamanho) {
+    public Pilha(int tamanho) {
         elementos = new int[tamanho];
     }
     
@@ -26,7 +21,7 @@ public class Fila {
         return quantidade;
     }
 
-    // Verificar se a fila está vazia – estaVazia()
+    // Verificar se a pilha está vazia – estaVazia()
     public boolean estaVazia() {
         if(quantidade == 0)
             return true;
@@ -34,7 +29,7 @@ public class Fila {
             return false;
     }
 
-    // Verificar se a fila está cheia, caso possua um limite – estaCheia()
+    // Verificar se a pilha está cheia, caso possua um limite – estaCheia()
     public boolean estaCheia() {
         if(quantidade == elementos.length)
             return true;
@@ -42,15 +37,15 @@ public class Fila {
             return false;
     }
     
-    // Acessar o elemento no início da fila – retornarElemento()
+    // Acessar o elemento no início da pilha – retornarElemento()
     public int retornarElemento() {
-        return elementos[0];
+        return elementos[quantidade - 1];
     }
 
-    // Inserir um elemento e no final da fila – enfileirar(e)
-    public void enfileirar(int elemento) {
+    // Inserir um elemento e no final da pilha – empilhar(e)
+    public void empilhar(int elemento) {
         if(estaCheia())
-            System.out.println("Não foi possível adicionar pois a fila está cheia!");
+            System.out.println("Não foi possível adicionar pois a pilha está cheia!");
         else {
             elementos[quantidade] = elemento;
             
@@ -58,27 +53,19 @@ public class Fila {
         }
     }
 
-    // Remover o elemento e no início da fila – desenfileirar()
-    public void desenfileirar() {
+    // Remover o elemento e no início da pilha – desempilhar()
+    public void desempilhar() {
         if(estaVazia())
-            System.out.println("Não foi possível remover pois a fila está vazia!");
-        else {
-            for(int i = 0; i < quantidade - 1; i++)
-                elementos[i] = elementos[i+1];
-            
+            System.out.println("Não foi possível remover pois a pilha está vazia!");
+        else
             quantidade--;
-        }
     }
     
     //Exibir todos os elementos
     public void exibir(){
-        String elementos = this.elementos[0] + ", ";
-        for (int i = 1; i < quantidade; i++) {
-            elementos += this.elementos[i];
-
-            if(i != (quantidade - 1))
-                elementos += ", ";
-        }
+        String elementos = "";
+        for (int i = quantidade - 1; i >= 0; i--)
+            elementos += "\n" + this.elementos[i];
         
         JOptionPane.showMessageDialog(null, elementos);
     }

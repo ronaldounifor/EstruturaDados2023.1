@@ -1,22 +1,20 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        Fila fila = new Fila(5);
-        System.out.println(fila.estaVazia());
-        System.out.println(fila.estaCheia());
+        Pilha pilha = new Pilha();
 
-        fila.enfileirar(9);
-        fila.enfileirar(1);
-        fila.enfileirar(8);
-        fila.enfileirar(2);
-        fila.enfileirar(7);
-        fila.enfileirar(200);
+        pilha.empilhar(12);
+        pilha.desempilhar();
+        pilha.empilhar(3);
+        pilha.empilhar(1);
+        pilha.desempilhar();
+        pilha.empilhar(3);
+        pilha.empilhar(1);
+        pilha.empilhar(3);
+        pilha.empilhar(1);
+        pilha.desempilhar();
+        pilha.desempilhar();
+        pilha.empilhar(300);
 
-        fila.exibir();
-
-        System.out.println(fila.estaVazia());
-        System.out.println(fila.estaCheia());
-        
-        fila.desenfileirar();
-        fila.exibir();
+        pilha.exibir();
     }
 }
