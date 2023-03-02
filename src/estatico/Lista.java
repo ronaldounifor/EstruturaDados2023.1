@@ -1,3 +1,4 @@
+package estatico;
 import java.util.Arrays;
 
 import javax.swing.JOptionPane;
