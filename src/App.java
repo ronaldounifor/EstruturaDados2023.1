@@ -1,22 +1,22 @@
-import dinamico.FilaEncadeada;
+import dinamico.PilhaEncadeada;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        FilaEncadeada Fila = new FilaEncadeada();
+        PilhaEncadeada pilha = new PilhaEncadeada();
 
-        Fila.enfileirar(1);
-        Fila.enfileirar(3);
-        Fila.enfileirar(5);
-        Fila.enfileirar(7);
-        Fila.enfileirar(9);
-        Fila.enfileirar(8);
-        Fila.enfileirar(6);
+        pilha.empilhar(1);
+        pilha.empilhar(3);
+        pilha.empilhar(5);
+        pilha.empilhar(7);
+        pilha.empilhar(9);
+        pilha.empilhar(8);
+        pilha.empilhar(6);
 
-        Fila.desenfileirar();
-        Fila.desenfileirar();
-        Fila.desenfileirar();
+        pilha.desempilhar();
+        pilha.desempilhar();
+        pilha.desempilhar();
         
-        Fila.exibir();
+        pilha.exibir();
 
     }
 }
