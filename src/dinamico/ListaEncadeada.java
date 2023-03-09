@@ -44,7 +44,7 @@ public class ListaEncadeada {
     }
 
     private boolean validarEntrada(int indice) {
-        if(indice >= 0 || indice <= quantidade)
+        if(indice >= 0 && indice <= quantidade)
             return true;
         else
             return false;

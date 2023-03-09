@@ -1,5 +1,4 @@
 import dinamico.ListaEncadeada;
-import dinamico.No;
 
 public class App {
     public static void main(String[] args) throws Exception {
