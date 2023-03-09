@@ -1,7 +1,5 @@
 package dinamico;
 
-import java.util.Arrays;
-
 import javax.swing.JOptionPane;
 
 public class ListaEncadeada {
@@ -85,26 +83,42 @@ public class ListaEncadeada {
     }
 
     // Remover o elemento e na posição i – removerPosicao(i)
+    public void removerPosicao(int indice) {
+        if(!validarEntrada(indice)) {
+            System.out.println("Não é possível remover, entrada inválida!");
+        } else {
+            No noAtual = primeiro;
+            for (int i = 0; i < indice - 1; i++)
+                    noAtual = noAtual.getProximo();
+
+            if(indice == 0)
+                primeiro = noAtual.getProximo();
+            else
+                noAtual.setProximo(noAtual.getProximo().getProximo());
+            
+            quantidade--;
+        }
+    }
 
     // Remover o elemento no inicio – removerInicio()
+    public void removerInicio() {
+        removerPosicao(0);
+    }
 
     // Remover o elemento no final – removerFinal()
-
-
-
+    public void removerFinal() {
+        removerPosicao(quantidade - 1);
+    }
 
     //Exibir todos os elementos
     public void exibir(){
-        String elementos = primeiro.getElemento() + ", ";
+        String elementos = primeiro.getElemento() + "";
 
         No noAtual = primeiro;
 
         for (int i = 0; i < quantidade - 1; i++) {
             noAtual = noAtual.getProximo();
-            elementos += noAtual.getElemento();
-
-            if(i != (quantidade - 1))
-                elementos += ", ";
+            elementos += ", " + noAtual.getElemento();
         }
         
         JOptionPane.showMessageDialog(null, elementos);
