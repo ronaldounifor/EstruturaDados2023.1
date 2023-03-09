@@ -1,22 +1,22 @@
-import dinamico.ListaEncadeada;
+import dinamico.FilaEncadeada;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        ListaEncadeada lista = new ListaEncadeada();
+        FilaEncadeada Fila = new FilaEncadeada();
 
-        lista.adicionarFinal(1);
-        lista.adicionarFinal(3);
-        lista.adicionarFinal(5);
-        lista.adicionarFinal(7);
-        lista.adicionarFinal(9);
-        lista.adicionarPosicao(8, 3);
-        lista.adicionarPosicao(6, 1);
+        Fila.enfileirar(1);
+        Fila.enfileirar(3);
+        Fila.enfileirar(5);
+        Fila.enfileirar(7);
+        Fila.enfileirar(9);
+        Fila.enfileirar(8);
+        Fila.enfileirar(6);
 
-        lista.removerInicio();
-        lista.removerPosicao(2);
-        lista.removerPosicao(4);
-        //6 3 8 7
-        lista.exibir();
+        Fila.desenfileirar();
+        Fila.desenfileirar();
+        Fila.desenfileirar();
+        
+        Fila.exibir();
 
     }
 }
