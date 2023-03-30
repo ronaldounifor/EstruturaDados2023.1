@@ -1,22 +1,25 @@
-import dinamico.PilhaEncadeada;
+import dinamico.LSECircular;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        PilhaEncadeada pilha = new PilhaEncadeada();
+        LSECircular listaCircular = new LSECircular();
 
-        pilha.empilhar(1);
-        pilha.empilhar(3);
-        pilha.empilhar(5);
-        pilha.empilhar(7);
-        pilha.empilhar(9);
-        pilha.empilhar(8);
-        pilha.empilhar(6);
+        listaCircular.adicionarInicio(7);
+        listaCircular.adicionarFinal(2);
+        listaCircular.adicionarPosicao(8, 1);
 
-        pilha.desempilhar();
-        pilha.desempilhar();
-        pilha.desempilhar();
+        listaCircular.adicionarPosicao(5, 3);
+        listaCircular.adicionarPosicao(5, 4);
+        listaCircular.adicionarPosicao(5, 5);
+
+        listaCircular.removerFinal();
+        listaCircular.removerFinal();
+
+        listaCircular.removerPosicao(2);
         
-        pilha.exibir();
+        listaCircular.exibir();
+
+
 
     }
 }
