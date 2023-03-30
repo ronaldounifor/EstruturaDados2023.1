@@ -1,25 +1,22 @@
-import dinamico.LSECircular;
+import dinamico.ListaDE;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        LSECircular listaCircular = new LSECircular();
+        ListaDE lista = new ListaDE(7);
 
-        listaCircular.adicionarInicio(7);
-        listaCircular.adicionarFinal(2);
-        listaCircular.adicionarPosicao(8, 1);
-
-        listaCircular.adicionarPosicao(5, 3);
-        listaCircular.adicionarPosicao(5, 4);
-        listaCircular.adicionarPosicao(5, 5);
-
-        listaCircular.removerFinal();
-        listaCircular.removerFinal();
-
-        listaCircular.removerPosicao(2);
+        lista.adicionarFinal(5);
+        lista.adicionarFinal(3);
+        lista.adicionarInicio(11);
+        lista.adicionarPosicao(12, 2);
+        lista.adicionarFinal(8);
+        lista.exibir();
         
-        listaCircular.exibir();
-
-
+        lista.removerPosicao(2);
+        lista.exibir();
+        lista.removerInicio();
+        lista.exibir();
+        lista.removerFinal();
+        lista.exibir();
 
     }
 }
