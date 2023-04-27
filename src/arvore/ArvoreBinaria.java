@@ -1,5 +1,7 @@
 package arvore;
 
+import dinamico.ListaEncadeada;
+
 public class ArvoreBinaria {
     private NoAB raiz;
 
@@ -68,18 +70,49 @@ public class ArvoreBinaria {
     private int nivelElemento(NoAB atual, int elemento) {
         if(atual.getElemento() == elemento)
             return 0;
-        //FIXME corrigir retorno +1
+        
         int resultado = -1;
         if(atual.getEsquerda() != null)
-            resultado =  1 + nivelElemento(atual.getEsquerda(), elemento);
+            resultado =  nivelElemento(atual.getEsquerda(), elemento);
 
-        if(resultado == 0 && atual.getDireita() != null)
-            resultado =  1 + nivelElemento(atual.getDireita(), elemento);
+        if(resultado == -1 && atual.getDireita() != null)
+            resultado =  nivelElemento(atual.getDireita(), elemento);
 
-        return resultado;
+        if(resultado >= 0)
+            return resultado + 1;
+        else
+            return resultado;
     }
 
     // Resgatar a altura da árvore – alturaArvore()
+    public int alturaArvore() {
+        return alturaArvore(raiz);
+    }
+
+    private int alturaArvore(NoAB atual) {
+        if(folha(atual))
+            return nivelElemento(atual.getElemento());
+
+        int alturaEsquerda = -1;
+        int alturaDireita = -1;
+        if(atual.getEsquerda() != null)
+            alturaEsquerda = alturaArvore(atual.getEsquerda());
+
+        if(atual.getDireita() != null)
+            alturaDireita = alturaArvore(atual.getDireita());
+
+        if(alturaDireita > alturaEsquerda)
+            return alturaDireita;
+        else
+            return alturaEsquerda;  
+    }
+
+    private boolean folha(NoAB no) {
+        if(no.getEsquerda() == null && no.getDireita() == null)
+            return true;
+        
+        return false;
+    }
     // Desafio: adicionar()
     // Inserir um elemento e à direita de p – adicionarDireita(e, p)
     // Adicionar e à esquerda de p – adicionarEsquerda(e, p)
