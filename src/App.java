@@ -1,22 +1,17 @@
-import dinamico.ListaDE;
+import arvore.ArvoreBinaria;
+import util.BTreePrinter;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        ListaDE lista = new ListaDE(7);
+        ArvoreBinaria arvore = new ArvoreBinaria(12);
 
-        lista.adicionarFinal(5);
-        lista.adicionarFinal(3);
-        lista.adicionarInicio(11);
-        lista.adicionarPosicao(12, 2);
-        lista.adicionarFinal(8);
-        lista.exibir();
-        
-        lista.removerPosicao(2);
-        lista.exibir();
-        lista.removerInicio();
-        lista.exibir();
-        lista.removerFinal();
-        lista.exibir();
+        arvore.adicionarEsquerda(15, 12);
+        arvore.adicionarDireita(13, 12);
+        arvore.adicionarEsquerda(14, 15);
+        arvore.adicionarDireita(22, 15);
+        BTreePrinter.printNode(arvore.buscarElemento(12));
 
+        arvore.adicionarEsquerda(300, 12);
+        BTreePrinter.printNode(arvore.buscarElemento(12));
     }
 }

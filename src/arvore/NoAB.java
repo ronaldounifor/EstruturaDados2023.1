@@ -41,4 +41,9 @@ public class NoAB {
         this.direita = direita;
     }
 
+    @Override
+    public String toString() {
+        return this.elemento+"";
+    }
+
 }

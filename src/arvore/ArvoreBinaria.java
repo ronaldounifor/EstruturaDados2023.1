@@ -1,7 +1,5 @@
 package arvore;
 
-import dinamico.ListaEncadeada;
-
 public class ArvoreBinaria {
     private NoAB raiz;
 
@@ -22,9 +20,11 @@ public class ArvoreBinaria {
             return false;
     }
 
-    //TODO Testar este método
     // Buscar um determinado elemento e – buscarElemento(e)
     public NoAB buscarElemento(int elemento) {
+        if(estaVazia())
+            return null;
+        
         return buscarElemento(raiz, elemento);
     }
 
@@ -113,9 +113,61 @@ public class ArvoreBinaria {
         
         return false;
     }
-    // Desafio: adicionar()
+    
     // Inserir um elemento e à direita de p – adicionarDireita(e, p)
-    // Adicionar e à esquerda de p – adicionarEsquerda(e, p)
-    // Remover o elemento e – removerElemento(e)
+    public void adicionarDireita(int elemento, int pai) {
+        NoAB noPai = buscarElemento(pai);
+        if(noPai == null) {
+            System.out.println("Este pai não existe!");
+            return;
+        }
 
+        NoAB filho = noPai.getDireita();
+        if(filho != null)
+            filho.setElemento(elemento);
+        else {
+            filho = new NoAB(elemento);
+            noPai.setDireita(filho);
+        }
+    }
+
+    // Adicionar e à esquerda de p – adicionarEsquerda(e, p)
+    public void adicionarEsquerda(int elemento, int pai) {
+        NoAB noPai = buscarElemento(pai);
+        if(noPai == null) {
+            System.out.println("Este pai não existe!");
+            return;
+        }
+
+        NoAB filho = noPai.getEsquerda();
+        if(filho != null)
+            filho.setElemento(elemento);
+        else {
+            filho = new NoAB(elemento);
+            noPai.setEsquerda(filho);
+        }
+    }
+
+    // Remover o elemento e – removerElemento(e)
+    public void removerElemento(int elemento) {
+        NoAB pai = buscarPai(elemento);
+
+        if(pai == null) {
+            if(raiz.getElemento() == elemento)
+                raiz = null;
+            else
+                System.out.println("Não é possível remover o elemento: não existe!");
+                
+            return;
+        }
+
+        NoAB filhoEsquerda = pai.getEsquerda();
+        if(filhoEsquerda != null && filhoEsquerda.getElemento() == elemento)
+            pai.setEsquerda(null);
+        else
+            pai.setDireita(null);
+    }
+
+    // TODO Desafio: adicionar()
+    // TODO Desafio: Remover elegante
 }
