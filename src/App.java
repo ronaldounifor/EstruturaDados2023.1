@@ -1,17 +1,30 @@
-import arvore.ArvoreBinaria;
+import arvore.ArvoreBusca;
 import util.BTreePrinter;
 
 public class App {
-    public static void main(String[] args) throws Exception {
-        ArvoreBinaria arvore = new ArvoreBinaria(12);
+    private static final int root = 17;
+    private static final ArvoreBusca arvore = new ArvoreBusca(root);
 
-        arvore.adicionarEsquerda(15, 12);
-        arvore.adicionarDireita(13, 12);
-        arvore.adicionarEsquerda(14, 15);
-        arvore.adicionarDireita(22, 15);
-        BTreePrinter.printNode(arvore.buscarElemento(12));
+    public static void main(String[] args) throws Exception {    
+        printTree();
+        arvore.adicionar(14);
+        printTree();
+        arvore.adicionar(20);
+        printTree();
+        arvore.adicionar(2);
+        printTree();
+        arvore.adicionar(16);
+        printTree();
+        arvore.adicionar(18);
+        printTree();
+        arvore.adicionar(44);
+        printTree();
+        arvore.adicionar(19);
+        printTree();
+    }
 
-        arvore.adicionarEsquerda(300, 12);
-        BTreePrinter.printNode(arvore.buscarElemento(12));
+    private static void printTree() {
+        BTreePrinter.printNode(arvore.buscarElemento(root));
+
     }
 }

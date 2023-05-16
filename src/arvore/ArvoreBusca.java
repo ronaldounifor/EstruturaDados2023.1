@@ -1,14 +1,14 @@
 package arvore;
 
-public class ArvoreBinaria {
+public class ArvoreBusca {
     private NoAB raiz;
 
     // Criar uma nova árvore – Arvore()
-    public ArvoreBinaria() {
+    public ArvoreBusca() {
         raiz = null;
     }
 
-    public ArvoreBinaria(int raiz) {
+    public ArvoreBusca(int raiz) {
         this.raiz = new NoAB(raiz);
     }
 
@@ -29,15 +29,18 @@ public class ArvoreBinaria {
     }
 
     private NoAB buscarElemento(NoAB atual, int elemento) {
-        if(atual.getElemento() == elemento)
+        if(atual == null) return null;
+
+        int elementoAtual = atual.getElemento();
+        if(elementoAtual == elemento)
             return atual;
 
         NoAB resultado = null;
-        if(atual.getEsquerda() != null)
-            resultado = buscarElemento(atual.getEsquerda(), elemento);
-        if(resultado == null && atual.getDireita() != null)
+        if(elementoAtual < elemento)
             resultado = buscarElemento(atual.getDireita(), elemento);
-        
+        else
+            resultado = buscarElemento(atual.getEsquerda(), elemento);
+
         return resultado;
     }
 
@@ -50,21 +53,24 @@ public class ArvoreBinaria {
     }
 
     private NoAB buscarPai(NoAB atual, int elemento) {
+        if(atual == null) return null;
+        
+        if(atual.getDireita() != null && atual.getDireita().getElemento() == elemento)
+            return atual;
+                
         if(atual.getEsquerda() != null && atual.getEsquerda().getElemento() == elemento)
             return atual;
 
-        if(atual.getDireita() != null && atual.getDireita().getElemento() == elemento)
-            return atual;
-
         NoAB resultado = null;
-        if(atual.getEsquerda() != null)
-            resultado = buscarPai(atual.getEsquerda(), elemento);
-        if(resultado == null && atual.getDireita() != null)
+        if(atual.getElemento() < elemento)
             resultado = buscarPai(atual.getDireita(), elemento);
-        
+        else
+            resultado = buscarPai(atual.getEsquerda(), elemento);
+
         return resultado;
     }
 
+    //FIXME MUDAR?
     // Retornar o nível do elemento e – nivelElemento(e)
     public int nivelElemento(int elemento) {
         return nivelElemento(raiz, elemento);
@@ -87,6 +93,7 @@ public class ArvoreBinaria {
             return resultado;
     }
 
+    //FIXME MUDAR?
     // Resgatar a altura da árvore – alturaArvore()
     public int alturaArvore() {
         return alturaArvore(raiz);
@@ -116,41 +123,26 @@ public class ArvoreBinaria {
         
         return false;
     }
-    
-    // Inserir um elemento e à direita de p – adicionarDireita(e, p)
-    public void adicionarDireita(int elemento, int pai) {
-        NoAB noPai = buscarElemento(pai);
-        if(noPai == null) {
-            System.out.println("Este pai não existe!");
-            return;
-        }
 
-        NoAB filho = noPai.getDireita();
-        if(filho != null)
-            filho.setElemento(elemento);
-        else {
-            filho = new NoAB(elemento);
-            noPai.setDireita(filho);
+    public void adicionar(int elemento) {
+        adicionar(raiz, elemento);
+    }
+
+    private void adicionar(NoAB atual, int elemento) {
+        if(atual.getElemento() < elemento) {
+            if(atual.getDireita() == null)
+                atual.setDireita(new NoAB(elemento));
+            else
+                adicionar(atual.getDireita(), elemento);
+        } else {
+            if(atual.getEsquerda() == null)
+                atual.setEsquerda(new NoAB(elemento));
+            else
+                adicionar(atual.getEsquerda(), elemento);
         }
     }
 
-    // Adicionar e à esquerda de p – adicionarEsquerda(e, p)
-    public void adicionarEsquerda(int elemento, int pai) {
-        NoAB noPai = buscarElemento(pai);
-        if(noPai == null) {
-            System.out.println("Este pai não existe!");
-            return;
-        }
-
-        NoAB filho = noPai.getEsquerda();
-        if(filho != null)
-            filho.setElemento(elemento);
-        else {
-            filho = new NoAB(elemento);
-            noPai.setEsquerda(filho);
-        }
-    }
-
+    //TODO
     // Remover o elemento e – removerElemento(e)
     public void removerElemento(int elemento) {
         NoAB pai = buscarPai(elemento);
@@ -171,6 +163,5 @@ public class ArvoreBinaria {
             pai.setDireita(null);
     }
 
-    // TODO Desafio: adicionar()
     // TODO Desafio: Remover elegante
 }
