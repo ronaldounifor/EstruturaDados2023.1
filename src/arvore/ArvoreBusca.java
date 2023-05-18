@@ -70,7 +70,7 @@ public class ArvoreBusca {
         return resultado;
     }
 
-    //FIXME MUDAR?
+    //FIXME Otimizar
     // Retornar o nível do elemento e – nivelElemento(e)
     public int nivelElemento(int elemento) {
         return nivelElemento(raiz, elemento);
@@ -93,7 +93,6 @@ public class ArvoreBusca {
             return resultado;
     }
 
-    //FIXME MUDAR?
     // Resgatar a altura da árvore – alturaArvore()
     public int alturaArvore() {
         return alturaArvore(raiz);
@@ -142,25 +141,26 @@ public class ArvoreBusca {
         }
     }
 
-    //TODO
+
+    //TODO Remoção por cópia
     // Remover o elemento e – removerElemento(e)
     public void removerElemento(int elemento) {
-        NoAB pai = buscarPai(elemento);
+        //Nó a ser removido é substituído por uma folha
+        //      (1) O menor dos nós maiores que o nó a ser removido;
+        //      (2) A maior dos nós menores que o nó a ser removido.
 
-        if(pai == null) {
-            if(raiz.getElemento() == elemento)
-                raiz = null;
-            else
-                System.out.println("Não é possível remover o elemento: não existe!");
-                
-            return;
-        }
+        NoAB removido = buscarElemento(elemento);
+        // (1) menor dos maiores
+        // filho da direita
+        // loop filhos da esquerda até nulo
+        // se filho da direita existir, assume a posicao
 
-        NoAB filhoEsquerda = pai.getEsquerda();
-        if(filhoEsquerda != null && filhoEsquerda.getElemento() == elemento)
-            pai.setEsquerda(null);
-        else
-            pai.setDireita(null);
+        // alternativa 
+
+        // (2) maior dos menores
+        // filho da esquerda
+        // loop filhos da direita até nulo
+        // se filho da esquerda existir, assume a posicao
     }
 
     // TODO Desafio: Remover elegante

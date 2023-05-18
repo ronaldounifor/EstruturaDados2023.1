@@ -6,21 +6,18 @@ public class App {
     private static final ArvoreBusca arvore = new ArvoreBusca(root);
 
     public static void main(String[] args) throws Exception {    
-        printTree();
+
         arvore.adicionar(14);
-        printTree();
         arvore.adicionar(20);
-        printTree();
         arvore.adicionar(2);
-        printTree();
         arvore.adicionar(16);
-        printTree();
         arvore.adicionar(18);
-        printTree();
         arvore.adicionar(44);
-        printTree();
         arvore.adicionar(19);
         printTree();
+
+        System.out.println(arvore.nivelElemento(14));
+
     }
 
     private static void printTree() {
