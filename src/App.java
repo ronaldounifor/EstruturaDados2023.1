@@ -1,22 +1,20 @@
-import arvore.ArvoreBusca;
+import arvore.AVL;
 import util.BTreePrinter;
 
 public class App {
-    private static final int root = 17;
-    private static final ArvoreBusca arvore = new ArvoreBusca(root);
+    private static final int root = 8;
+    private static final AVL arvore = new AVL(root);
 
     public static void main(String[] args) throws Exception {    
 
-        arvore.adicionar(14);
-        arvore.adicionar(20);
-        arvore.adicionar(2);
-        arvore.adicionar(16);
-        arvore.adicionar(18);
-        arvore.adicionar(44);
-        arvore.adicionar(19);
-        printTree();
+        arvore.adicionar(4);
+        // arvore.adicionar(10);
+        // arvore.adicionar(2);
+        // arvore.adicionar(6);
 
-        System.out.println(arvore.nivelElemento(14));
+
+        // arvore.adicionar(3);
+        printTree();
 
     }
 

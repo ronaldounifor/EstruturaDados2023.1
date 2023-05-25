@@ -1,6 +1,5 @@
 package arvore;
 
-//TODO iniciar árvore AVL
 public class AVL {
     private NoAB raiz;
 
@@ -126,6 +125,7 @@ public class AVL {
 
     public void adicionar(int elemento) {
         adicionar(raiz, elemento);
+        balancear(buscarElemento(elemento));
     }
 
     private void adicionar(NoAB atual, int elemento) {
@@ -142,6 +142,70 @@ public class AVL {
         }
     }
 
+    /**
+ * rotacao dupla esq?
+ * rotacao dupla dir?
+ */
+    private void balancear(NoAB atual) {
+        if(atual == null) return;
+
+        int fatorBalanceamento = fatorBalanceamento(atual);
+
+        //fb < -1
+        //rotacao direita
+        if(fatorBalanceamento < -1)
+            rotacionarDireita(atual);
+
+        //fb > 1
+        //rotacao esquerda
+        if(fatorBalanceamento > 1)
+            rotacionarEsquerda(atual);
+
+        balancear(buscarPai(atual.getElemento()));
+
+    }
+    
+    private void rotacionarDireita(NoAB atual) {
+        NoAB noPai = buscarPai(atual.getElemento());
+        NoAB noFilho = atual.getEsquerda();
+
+        if(noPai == null)
+            raiz = noFilho;
+
+        atual.setEsquerda(null);
+
+        NoAB noPendurado = noFilho.getDireita();
+        noFilho.setDireita(atual);
+        atual.setEsquerda(noPendurado);
+    }
+
+    private void rotacionarEsquerda(NoAB atual) {
+        NoAB noPai = buscarPai(atual.getElemento());
+        NoAB noFilho = atual.getDireita();
+
+        if(noPai == null)
+            raiz = noFilho;
+
+        atual.setDireita(null);
+
+        NoAB noPendurado = noFilho.getEsquerda();
+        noFilho.setEsquerda(atual);
+        atual.setDireita(noPendurado);
+    }
+
+    //FIXME CORRIGIR
+    public int fatorBalanceamento(NoAB atual) {
+        //altura direita
+        int alturaDireita = -1;
+        if(atual.getDireita() != null)
+            alturaDireita = alturaArvore(atual.getDireita());
+        //altura esquerda
+        int alturaEsquerda = -1;
+        if(atual.getEsquerda() != null)
+            alturaEsquerda = alturaArvore(atual.getEsquerda());
+        
+        return alturaDireita - alturaEsquerda;
+    }
 
     //TODO Remoção por cópia
     // Remover o elemento e – removerElemento(e)
